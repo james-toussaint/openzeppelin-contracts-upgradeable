@@ -3,12 +3,12 @@
 
 pragma solidity ^0.8.20;
 
-import {ERC4337Utils} from "@openzeppelin/contracts/account/utils/ERC4337Utils.sol";
-import {PackedUserOperation} from "@openzeppelin/contracts/interfaces/IERC4337.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {SafeCast} from "@openzeppelin/contracts/utils/math/SafeCast.sol";
+import {ERC4337Utils} from "@openzeppelin/contracts/account/utils/ERC4337Utils.sol";
+import {PackedUserOperation} from "@openzeppelin/contracts/interfaces/IERC4337.sol";
 import {PaymasterUpgradeable} from "../PaymasterUpgradeable.sol";
 import {Initializable} from "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 
@@ -331,7 +331,7 @@ abstract contract PaymasterERC20Upgradeable is Initializable, PaymasterUpgradeab
      * retained in {_postOp}. Without it, a user could inflate `paymasterPostOpGasLimit` and have the paymaster
      * absorb the resulting penalty on every operation, draining its deposit.
      *
-     * The default mirrors the 10% penalty the EntryPoint (v0.7-v0.9) applies to unused postOp gas. It deliberately
+     * The default mirrors the 10% penalty the EntryPoint (v0.8-v0.9) applies to unused postOp gas. It deliberately
      * does not reproduce the EntryPoint's 40_000 gas threshold below which no penalty applies: `unusedPostOpGas` is
      * an upper bound on the real unused amount, so claiming that relief here can price the charge below the penalty
      * the EntryPoint actually debits.
